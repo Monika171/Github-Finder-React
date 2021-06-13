@@ -29,14 +29,20 @@ class Users extends Component {
 
     render() {
         return (
-            <div>
+            <div style={userStyle}>
                 {/* create a List, also needs unique key, output an UserItem instead of a div(replace div)*/}
                 {this.state.users.map(user => (
                     <UserItem key={user.id} user={user}/>
                 ))}
             </div>
-        )
-    }
+        );
+    }   
 }
 
-export default Users
+const userStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridGap: '1rem'
+}
+
+export default Users;
