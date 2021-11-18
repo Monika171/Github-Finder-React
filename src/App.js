@@ -1,11 +1,32 @@
 import React, { Component } from 'react';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
+import axios from 'axios';
+
+
 // import UserItem from './components/users/UserItem';
 import './App.css';
 
 
 class App extends Component {
+
+  state = {
+    users: [],
+    loading: false
+  }
+  // one of lifecycle methods as render
+  async componentDidMount() {
+    this.setState({ loading: true });
+
+    const res = await axios
+      .get('https://api.github.com/users');
+    
+    this.setState({ users: res.data, loading: false });
+      // console.log(res.data);
+
+    // console.log(123);
+    // this is where we can make a http request to github   
+  }
 
   render() {
 
@@ -14,7 +35,7 @@ class App extends Component {
       <div className='App'>
         <Navbar />
         <div className='container'>
-          <Users />
+          <Users loading={this.state.loading} users={this.state.users}/>
         </div>
         
         {/* <UserItem /> */}

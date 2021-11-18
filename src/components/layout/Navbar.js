@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 //prop types-> type checking, tells if a props should be a number, array, string etc. shortcut impt
 
-const Navbar = (props) => {
+const Navbar = ({icon, title}) => {
     
     // render() {
         return (
             <nav className="navbar bg-primary">
                 <h1>
-                    <i className={props.icon}></i>
-                    &nbsp;{props.title}
+                    <i className={icon}></i>
+                    &nbsp;{title}
                 </h1>
             </nav>
         )
