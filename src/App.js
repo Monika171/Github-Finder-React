@@ -9,8 +9,6 @@ import About from './components/pages/About';
 
 import axios from 'axios';
 
-
-// import UserItem from './components/users/UserItem';
 import './App.css';
 import { Fragment } from 'react/cjs/react.production.min';
 
@@ -23,21 +21,6 @@ class App extends Component {
     loading: false,
     alert: null
   }
-  // one of lifecycle methods as render
-  // async componentDidMount() {
-  //   // console.log(process.env.REACT_APP_GITHUB_CLIENT_SECRET);
-
-  //   this.setState({ loading: true });
-
-  //   const res = await axios
-  //     .get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    
-  //   this.setState({ users: res.data, loading: false });
-  //     // console.log(res.data);
-
-  //   // console.log(123);
-  //   // this is where we can make a http request to github   
-  // }
 
   // Search Github users
   searchUsers = async text => {
@@ -52,7 +35,7 @@ class App extends Component {
   getUser = async (username) => {
     this.setState({ loading: true })
     const res = await axios
-      .get(`https://api.github.com/users?q=${username}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+      .get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     
     this.setState({ user: res.data, loading: false });
   }
@@ -91,15 +74,13 @@ class App extends Component {
               <Users loading={loading} users={users}/>
               </Fragment>
             )}/>
-            <Route exact path='/about'component={About}/>
+            <Route exact path='/about' component={About}/>
             <Route exact path='user/:login' render={props => (
               <User {...props} getUser={this.getUser} user={user} loading={loading}/>
             )}></Route>             
+
           </Switch>
         </div>
-        
-        {/* <UserItem /> */}
-        {/* <Navbar title='Hello' /> */}
 
       </div>
       </Router>

@@ -5,8 +5,8 @@ export class User extends Component {
         this.props.getUser(this.props.match.params.login);
     }
     render() {
-
-        const {name,
+        const {
+            name,
             avatar_url,
             location,
             bio,
@@ -17,9 +17,11 @@ export class User extends Component {
             following,
             public_repos,
             public_gists,
-            hireable} = this.props.user;
+            hireable
+        } = this.props.user;
 
-            const {loading} = this.props;
+        const {loading} = this.props;
+        
         return (
             <div>
                 {name}
@@ -28,4 +30,4 @@ export class User extends Component {
     }
 }
 
-export default User
+export default User;
